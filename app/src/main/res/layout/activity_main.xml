@@ -101,5 +101,4 @@
             android:id="@+id/c3" />
 
     </GridLayout>
-
 </LinearLayout>

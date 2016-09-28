@@ -13,7 +13,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private Button btnOnePlayer, btnTwoPlayer;
     private int [] tile =new int[9];
     private Game game;
-    private int player = 1;
+    private int player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +40,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
     public void onClick(View view){
         int id = view.getId();
         if(id == R.id.onePlayer){
+            player = 1;
             start();
         }
         else if(id == R.id.twoPlayer){
-            start();
             player = 2;
+            start();
         }
     }
 
@@ -57,7 +58,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         RadioGroup difficult = (RadioGroup) findViewById(R.id.radioGroup);
         int selectedDifficult = difficult.getCheckedRadioButtonId();
-        selectedDifficult = 1;
 
         if(selectedDifficult == R.id.easyDifificult){
             selectedDifficult = 1;
@@ -70,7 +70,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btnOnePlayer.setEnabled(false);
         btnTwoPlayer.setEnabled(false);
         difficult.setAlpha(0);
-
+        System.out.println("The selected difficult was: "+selectedDifficult);
+        System.out.println("players : "+player);
         game = new Game(player, selectedDifficult);
     }
 }
