@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Noughts and crosses</string>
+    <string name="onePlayer">1 Player</string>
+    <string name="twoPlayer">2 Player</string>
+    <string name="easy_difficult">Easy</string>
+    <string name="normal_difficult">Normal</string>
+    <string name="hard_difficult">Hard</string>
+    <string name="tile">Tile</string>
+    <string name="circle_win">Circle win!</string>
+    <string name="crosses_win">Cresses win!</string>
+    <string name="tie">Tie!</string>
+</resources>

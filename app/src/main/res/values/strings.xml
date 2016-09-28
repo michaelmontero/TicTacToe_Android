@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">TicTacToe-Android</string>
+    <string name="app_name">TicTacToe</string>
+
+    <string name="onePlayer">1 Player</string>
+    <string name="twoPlayer">2 Player</string>
+    <string name="easy_difficult">Facil</string>
+    <string name="normal_difficult">Normal</string>
+    <string name="hard_difficult">Dificil</string>
+    <string name="Tile">Casilla</string>
+    <string name="circle_win">Circulos ganan!</string>
+    <string name="crosses_win">Aspas ganan!</string>
+    <string name="tie">Empate!</string>
 </resources>
