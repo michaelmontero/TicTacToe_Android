@@ -3,9 +3,9 @@
 
     <dimen name="generalPadding">24dp</dimen>
     <dimen name="casilla">160dp</dimen>
-    <dimen name="textTittle">48sp</dimen>
+    <dimen name="textTittle">30sp</dimen>
     <dimen name="buttonText">36sp</dimen>
-    <dimen name="minButtonWidth">140dp</dimen>
-    <dimen name="maxButtonWidth">40dp</dimen>
+    <dimen name="minButtonWidth">30dp</dimen>
+    <dimen name="maxButtonWidth">130dp</dimen>
 
 </resources>
