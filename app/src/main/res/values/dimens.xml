@@ -2,7 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
 
     <dimen name="generalPadding">24dp</dimen>
-    <dimen name="casilla">160dp</dimen>
+    <dimen name="casilla">80dp</dimen>
     <dimen name="textTittle">30sp</dimen>
     <dimen name="buttonText">36sp</dimen>
     <dimen name="minButtonWidth">30dp</dimen>

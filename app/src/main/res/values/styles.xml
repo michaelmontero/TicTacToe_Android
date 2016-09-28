@@ -22,11 +22,13 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:alpha">0.8</item>
+        <item name="android:textColor">#000</item>
         <item name="android:textSize">10dp</item>
     </style>
 
     <style name="casillas">
         <item name="android:layout_width">@dimen/casilla</item>
+        <item name="android:layout_margin">3dp</item>
         <item name="android:layout_height">@dimen/casilla</item>
         <item name="android:src">@drawable/casilla</item>
     </style>

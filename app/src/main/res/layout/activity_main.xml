@@ -8,8 +8,13 @@
     android:padding="@dimen/generalPadding"
     android:weightSum = "100"
     android:orientation="horizontal"
+    android:background="@drawable/background"
     tools:context="com.example.elleu.tictactoe_android.MainActivity">
 
+    <android.support.v4.widget.Space
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_weight="40"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,5 +58,47 @@
             android:text="@string/twoPlayer"
             style="@style/button" />
     </LinearLayout>
+
+    <android.support.v4.widget.Space
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_weight="60"/>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:columnCount="3"
+        android:rowCount="3">
+
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/a1" />
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/a2" />
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/a3" />
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/b1" />
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/b2" />
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/b3" />
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/c1" />
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/c2" />
+        <ImageView
+            style="@style/casillas"
+            android:id="@+id/c3" />
+
+    </GridLayout>
 
 </LinearLayout>
