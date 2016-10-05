@@ -5,10 +5,11 @@ package com.example.elleu.tictactoe_android;
  */
 
 public class Game{
-    private int players, difficult;
+    public static int players;
+    public final int difficult;
 
     public Game(int players, int difficult){
-        this.players = players;
+        this.players = 1;
         this.difficult = difficult;
     }
 }

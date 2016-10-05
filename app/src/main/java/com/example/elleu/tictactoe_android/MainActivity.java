@@ -3,17 +3,19 @@ package com.example.elleu.tictactoe_android;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
     private Button btnOnePlayer, btnTwoPlayer;
-    private int [] tile =new int[9];
+    private int [] TILE =new int[9];
     private Game game;
-    private int player;
+    private int player = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +26,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btnTwoPlayer = (Button) findViewById(R.id.twoPlayer);
 
         //Initialize each tile
-        tile[0] = R.id.a1;
-        tile[1] = R.id.a2;
-        tile[2] = R.id.a3;
-        tile[3] = R.id.b1;
-        tile[4] = R.id.b2;
-        tile[5] = R.id.b3;
-        tile[6] = R.id.c1;
-        tile[7] = R.id.c2;
-        tile[8] = R.id.c3;
+        TILE[0] = R.id.a1;
+        TILE[1] = R.id.a2;
+        TILE[2] = R.id.a3;
+        TILE[3] = R.id.b1;
+        TILE[4] = R.id.b2;
+        TILE[5] = R.id.b3;
+        TILE[6] = R.id.c1;
+        TILE[7] = R.id.c2;
+        TILE[8] = R.id.c3;
 
         btnOnePlayer.setOnClickListener(this);
         btnTwoPlayer.setOnClickListener(this);
@@ -49,9 +51,27 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
     }
 
-    private void start(){ //Thus methos should be called went click
+    public void marcTile(View view){//This method is called went click in any tile in the board
+
+        if(game != null) { //Is the game does not start
+            for (int x = 0; x < TILE.length; x++) {
+                if (view.getId() == TILE[x]) {
+                    ImageView imageView = (ImageView)findViewById(TILE[x]);
+                    if(Game.players == 1){
+                        imageView.setImageResource(R.drawable.circulo);
+                     }else{
+                        imageView.setImageResource(R.drawable.aspa);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+
+    private void start(){ //Thus methos should be called went click 1 player or two player
         ImageView image;
-        for(int tiles : tile){ //Reset the board
+        for(int tiles : TILE){ //Reset the board
             image = (ImageView)findViewById(tiles);
             image.setImageResource(R.drawable.casilla);
         }
@@ -70,8 +90,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         btnOnePlayer.setEnabled(false);
         btnTwoPlayer.setEnabled(false);
         difficult.setAlpha(0);
-        System.out.println("The selected difficult was: "+selectedDifficult);
-        System.out.println("players : "+player);
-        game = new Game(player, selectedDifficult);
+
+        game = new Game(player, selectedDifficult); //Start the game!
     }
 }
