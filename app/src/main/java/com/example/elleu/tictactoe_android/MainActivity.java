@@ -15,7 +15,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private Button btnOnePlayer, btnTwoPlayer;
     private int [] TILE =new int[9];
     private Game game;
-    private int player = 0;
+    private int player = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +57,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
             for (int x = 0; x < TILE.length; x++) {
                 if (view.getId() == TILE[x]) {
                     ImageView imageView = (ImageView)findViewById(TILE[x]);
-                    if(Game.players == 1){
+                    if(game.getCurrentPlayer() == "x"){
                         imageView.setImageResource(R.drawable.circulo);
+                        game.setCurrentPlayer("y");
                      }else{
                         imageView.setImageResource(R.drawable.aspa);
+                        game.setCurrentPlayer("x");
                     }
                     break;
                 }
