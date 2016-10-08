@@ -51,17 +51,19 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
     }
 
-    public void marcTile(View view){//This method is called went click in any tile in the board
+    public void markTile(View view){//This method is called went click in any tile in the board
 
         if(game != null) { //Is the game does not start
             for (int x = 0; x < TILE.length; x++) {
                 if (view.getId() == TILE[x]) {
                     ImageView imageView = (ImageView)findViewById(TILE[x]);
                     if(game.getCurrentPlayer() == "x"){
+                        imageView.setClickable(false);
                         imageView.setImageResource(R.drawable.circulo);
                         game.setCurrentPlayer("y");
                      }else{
                         imageView.setImageResource(R.drawable.aspa);
+                        imageView.setClickable(false);
                         game.setCurrentPlayer("x");
                     }
                     break;
