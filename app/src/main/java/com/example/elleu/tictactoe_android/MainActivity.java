@@ -17,7 +17,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
     Button onePlayerButton,twoPlayerButton;
     private int[] TILES;
     private Game game;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +48,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
     }
 
     public void onClick(View view){ //Thus method is called went click 1 player or two player nutton
-        int id = view.getId();
+        int buttonId = view.getId();
         player = 1;
         difficult = 0;
 
-        if(id == R.id.twoPlayer){
+        if(buttonId == R.id.twoPlayer){
             player = 2;
         }
 
@@ -94,15 +93,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
                     break;
                 }
             }
-            if(game.isTileMack(tile) == false){
+            if(!game.isTileMack(tile)){
                 return;
             }
             marc(tile);
             if(player == 1){ //if they is a player agains the machine get a random tile
                 tile = game.getRondomTile(); //After
-                game.turno();
+                while(!game.isTileMack(tile)){
+                    tile = game.getRondomTile();
+                }
                 marc(tile);
-                game.turno();
             }
         }
     }
@@ -116,6 +116,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }else{
             image.setImageResource(R.drawable.aspa);
         }
+        int resultado = game.turno();
+        if(resultado != 0 && resultado != 3){
+            Toast.makeText(MainActivity.this, "Ha ganado el jugador "+resultado, Toast.LENGTH_LONG).show();
+
+        }else{
+            if(resultado == 3){
+                Toast.makeText(MainActivity.this, "Empate", Toast.LENGTH_LONG).show();
+            }
+        }
+
     }
 
 
