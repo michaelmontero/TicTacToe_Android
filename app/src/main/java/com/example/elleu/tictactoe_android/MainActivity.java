@@ -67,7 +67,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             difficult = 2;
         }
 
-        game = new Game(difficult, player);
+        game = new Game(difficult);
 
         twoPlayerButton.setEnabled(false);
         onePlayerButton.setEnabled(false);
@@ -94,23 +94,27 @@ public class MainActivity extends Activity implements View.OnClickListener{
                     break;
                 }
             }
+            if(game.isTileMack(tile) == false){
+                return;
+            }
             marc(tile);
             if(player == 1){ //if they is a player agains the machine get a random tile
                 tile = game.getRondomTile(); //After
+                game.turno();
                 marc(tile);
+                game.turno();
             }
         }
     }
 
+
     private void marc(int tile){
         ImageView image = (ImageView)findViewById(TILES[tile]);
 
-        if(game.getCurrentPlayer() == "x"){
+        if(game.getPlayer() == 1){
             image.setImageResource(R.drawable.circulo);
-            game.setCurrentPlayer("y");
         }else{
             image.setImageResource(R.drawable.aspa);
-            game.setCurrentPlayer("x");
         }
     }
 

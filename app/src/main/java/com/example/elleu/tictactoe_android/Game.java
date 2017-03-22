@@ -11,26 +11,38 @@ public class Game{
 
     public static int player;
     public final int difficult;
-    private String currentPlayer;
+    private int TILE [];
 
-    public Game(int player, int difficult){
-        this.player = player;
+    public Game(int difficult){
+        player  = 1;
         this.difficult = difficult;
-        currentPlayer = "x";
+        TILE = new int[9];
+        for(int x = 0; x < 9; x++){
+            TILE[x] = 0;
+        }
     }
 
     public int getRondomTile(){
         Random randomTile = new Random();
-        return randomTile.nextInt(9);
+        return  randomTile.nextInt(9);
+
+    }
+
+    public boolean isTileMack(int tile){ //A tile is 1 when was played before
+        if(TILE[tile] == 1){
+            return  false;
+        }else {
+            TILE[tile] = player;
+        }
+        return true;
+    }
+
+    public  void turno(){
+        player++;
+        if(player > 2){
+            player = 1;
+        }
     }
     public int getPlayer() {  return player; }
-
-    public String getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public void setCurrentPlayer(String currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
 }
 
