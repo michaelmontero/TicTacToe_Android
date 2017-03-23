@@ -97,12 +97,17 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 return;
             }
             marc(tile);
-            if(player == 1){ //if they is a player agains the machine get a random tile
-                tile = game.getRondomTile(); //After
-                while(!game.isTileMack(tile)){
-                    tile = game.getRondomTile();
+            if(player == 1) { //if they is a player agains the machine get a random tile
+                if (game != null) {
+                    tile = game.getRondomTile(); //After
+                    while (!game.isTileMack(tile) && !game.isGameTie()) {
+                        tile = game.getRondomTile();
+                    }
+                    int gameResult = game.isWinner();
+                    if (gameResult == 0) {
+                        marc(tile);
+                    }
                 }
-                marc(tile);
             }
         }
     }
@@ -116,15 +121,20 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }else{
             image.setImageResource(R.drawable.aspa);
         }
-        int resultado = game.turno();
-        if(resultado != 0 && resultado != 3){
-            Toast.makeText(MainActivity.this, "Ha ganado el jugador "+resultado, Toast.LENGTH_LONG).show();
-
-        }else{
-            if(resultado == 3){
-                Toast.makeText(MainActivity.this, "Empate", Toast.LENGTH_LONG).show();
-            }
+        int result = game.turn();
+        if(result == 1) {
+            Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.circle_win)), Toast.LENGTH_LONG).show();
+            game = null;
         }
+        if(result == 2) {
+            Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.crosses_win)), Toast.LENGTH_LONG).show();
+            game = null;
+        }
+
+         if(result == 3){
+               Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.tie)), Toast.LENGTH_LONG).show();
+             game = null;
+         }
 
     }
 

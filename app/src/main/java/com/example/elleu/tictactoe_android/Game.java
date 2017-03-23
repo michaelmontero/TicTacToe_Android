@@ -1,8 +1,5 @@
 package com.example.elleu.tictactoe_android;
 
-import android.app.Activity;
-import android.widget.Toast;
-
 import java.util.Random;
 
 /**
@@ -39,13 +36,13 @@ public class Game{
         return true;
     }
 
-    public  int turno(){
+    public  int turn(){
         int winner = isWinner();
         if(winner != 0){
             return  winner;
         }
 
-        this.playerX++;
+        playerX++;
         if(playerX > 2){
             playerX = 1;
         }
@@ -54,7 +51,6 @@ public class Game{
     public int isWinner(){
         //Horizontal
 
-        int winner = 0;
         int couter = 0;
         int winnerPlayer = TILE[0];
         int newTile[][] = new int[3][3];  //Represent the board
@@ -65,14 +61,6 @@ public class Game{
                     couter++;
                 }
             }
-        for(int x =0; x < TILE.length; x++){
-            if(TILE[x] == 0){
-                break;
-            }
-            if(x == 8){
-                return Game.TIE;
-            }
-        }
         for(int x = 0 ; x < 3; x ++){
             winnerPlayer = newTile[x][0];
             for(int y =0 ; y < 3; y++){
@@ -123,7 +111,20 @@ public class Game{
             }
             counter++;
         }
+        if(isGameTie()) return Game.TIE;
+
         return 0;
+    }
+    public boolean isGameTie(){ //This function check is the game is tie
+        for(int x =0; x < TILE.length; x++){
+            if(TILE[x] == 0){ //Is there's an 0 in the board is't means there is a tile in blank
+                break;
+            }
+            if(x == 8){
+                return true;
+            }
+        }
+        return false;
     }
     public int getPlayer() {  return playerX; }
 }

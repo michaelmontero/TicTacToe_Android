@@ -9,5 +9,5 @@
     <string name="tile">Tile</string>
     <string name="circle_win">Circle win!</string>
     <string name="crosses_win">Cresses win!</string>
-    <string name="tie">Tie!</string>
+    <string name="tie">The game is tie!</string>
 </resources>
