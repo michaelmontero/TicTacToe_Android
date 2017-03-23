@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Game{
 
-
+    private final static int TIE = 3;
     public static int playerX;
     public final int difficult;
 
@@ -26,10 +26,8 @@ public class Game{
     }
 
     public int getRondomTile(){
-        int tile;
         Random randomTile = new Random();
         return randomTile.nextInt(9);
-
     }
 
     public boolean isTileMack(int tile){ //A tile is 1 when was played before
@@ -55,18 +53,26 @@ public class Game{
     }
     public int isWinner(){
         //Horizontal
+
         int winner = 0;
         int couter = 0;
         int winnerPlayer = TILE[0];
-        int newTile[][] = new int[3][3];
+        int newTile[][] = new int[3][3];  //Represent the board
 
             for(int p =0 ; p < 3; p++){
                 for (int i = 0; i < 3;i++){
-                    newTile[p][i] = TILE[couter];
+                    newTile[p][i] = TILE[couter]; //Fill the board
                     couter++;
                 }
             }
-
+        for(int x =0; x < TILE.length; x++){
+            if(TILE[x] == 0){
+                break;
+            }
+            if(x == 8){
+                return Game.TIE;
+            }
+        }
         for(int x = 0 ; x < 3; x ++){
             winnerPlayer = newTile[x][0];
             for(int y =0 ; y < 3; y++){
@@ -117,8 +123,6 @@ public class Game{
             }
             counter++;
         }
-
-
         return 0;
     }
     public int getPlayer() {  return playerX; }
