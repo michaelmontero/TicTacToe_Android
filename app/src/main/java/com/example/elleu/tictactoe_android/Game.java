@@ -70,15 +70,11 @@ public class Game{
         for(int x = 0 ; x < 3; x ++){
             winnerPlayer = newTile[x][0];
             for(int y =0 ; y < 3; y++){
-                if(newTile[x][y] != 0 && newTile[x][y] == winnerPlayer){
-                    winner++;
-                    winnerPlayer = newTile[x][y];
-                }
-                else{
-                    winner = 0;
+                if(newTile[x][y] == 0 || newTile[x][y] != winnerPlayer){
                     break;
                 }
-                if(winner == 3){
+                winnerPlayer = newTile[x][y];
+                if(y == 2){
                     return  winnerPlayer;
                 }
             }
@@ -87,15 +83,11 @@ public class Game{
         for(int x = 0 ; x < 3; x ++){
             winnerPlayer = newTile[0][x];
             for(int y =0 ; y < 3; y++){
-                if(newTile[y][x] != 0 && newTile[y][x] == winnerPlayer){
-                    winner++;
-                    winnerPlayer = newTile[y][x];
-                }
-                else{
-                    winner = 0;
+                if(newTile[y][x] == 0 || newTile[y][x] != winnerPlayer){
                     break;
                 }
-                if(winner == 3){
+                winnerPlayer = newTile[y][x];
+                if(y == 2){
                     return  winnerPlayer;
                 }
             }
@@ -104,15 +96,11 @@ public class Game{
         //Diagonal
         winnerPlayer = TILE[0];
         for(int x = 0; x < 3; x++){
-            if(newTile[x][x] != 0 && winnerPlayer == newTile[x][x]){
-                winner++;
-                winnerPlayer = newTile[x][x];
-            }
-            else{
-                winner = 0;
+            if(newTile[x][x] == 0 || winnerPlayer != newTile[x][x]){
                 break;
             }
-            if(winner == 3){
+            winnerPlayer = newTile[x][x];
+            if(x == 2){
                 return  winnerPlayer;
             }
         }
@@ -120,19 +108,14 @@ public class Game{
         winnerPlayer = TILE[2];
         int counter = 0;
         for(int x = 2; x > -1; x--){
-
-            if(newTile[counter][x] != 0 && winnerPlayer == newTile[counter][x]){
-                winner++;
-                winnerPlayer = newTile[counter][x];
-            }
-            else{
-                winner = 0;
+            if(newTile[counter][x] == 0 || winnerPlayer != newTile[counter][x]){
                 break;
             }
-            counter++;
-            if(winner == 3){
+            winnerPlayer = newTile[counter][x];
+            if(x == 0){
                 return  winnerPlayer;
             }
+            counter++;
         }
 
 
