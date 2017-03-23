@@ -55,7 +55,7 @@ public class Game{
     }
     public int isWinner(){
         //Horizontal
-
+        int winner = 0;
         int couter = 0;
         int winnerPlayer = TILE[0];
         int newTile[][] = new int[3][3];
@@ -66,29 +66,36 @@ public class Game{
                     couter++;
                 }
             }
-        //Horizontal validation
-        horizontalValidation:
-            for(int x = 0; x < 3; x++){
-                for(int j =0; j < 3; j++){
-                    if(winnerPlayer != newTile[x][j] || newTile[x][j] == 0){
-                        break horizontalValidation;
-                    }
-                    winnerPlayer = newTile[x][j];
-                    if(j == 2){ //Horizontal winner
-                        return  winnerPlayer;
-                    }
+
+        for(int x = 0 ; x < 3; x ++){
+            winnerPlayer = newTile[x][0];
+            for(int y =0 ; y < 3; y++){
+                if(newTile[x][y] != 0 && newTile[x][y] == winnerPlayer){
+                    winner++;
+                    winnerPlayer = newTile[x][y];
+                }
+                else{
+                    winner = 0;
+                    break;
+                }
+                if(winner == 3){
+                    return  winnerPlayer;
                 }
             }
-        winnerPlayer = TILE[0];
-        //Vertical
-        verticalValidation:
-        for(int x = 0; x < 3; x++){
-            for(int j =0; j < 3; j++){
-                if(winnerPlayer != newTile[j][x] || newTile[j][x] == 0){
-                    break verticalValidation;
+        }
+
+        for(int x = 0 ; x < 3; x ++){
+            winnerPlayer = newTile[0][x];
+            for(int y =0 ; y < 3; y++){
+                if(newTile[y][x] != 0 && newTile[y][x] == winnerPlayer){
+                    winner++;
+                    winnerPlayer = newTile[y][x];
                 }
-                winnerPlayer = newTile[j][x];
-                if(j == 2){ //Vertical winner
+                else{
+                    winner = 0;
+                    break;
+                }
+                if(winner == 3){
                     return  winnerPlayer;
                 }
             }
@@ -97,24 +104,37 @@ public class Game{
         //Diagonal
         winnerPlayer = TILE[0];
         for(int x = 0; x < 3; x++){
-            if(winnerPlayer != newTile[x][x] || newTile[x][x] == 0){
+            if(newTile[x][x] != 0 && winnerPlayer == newTile[x][x]){
+                winner++;
+                winnerPlayer = newTile[x][x];
+            }
+            else{
+                winner = 0;
                 break;
             }
-            winnerPlayer = newTile[x][x];
-            if(x == 2){ //Vertical winner
+            if(winner == 3){
                 return  winnerPlayer;
             }
         }
-        winnerPlayer = TILE[0];
-        for(int x = 3; x < 0; x--){
-            if(winnerPlayer != newTile[x][x] || newTile[x][x] != 0){
+
+        winnerPlayer = TILE[2];
+        int counter = 0;
+        for(int x = 2; x > -1; x--){
+
+            if(newTile[counter][x] != 0 && winnerPlayer == newTile[counter][x]){
+                winner++;
+                winnerPlayer = newTile[counter][x];
+            }
+            else{
+                winner = 0;
                 break;
             }
-            winnerPlayer = newTile[x][x];
-            if(x == 0){ //Vertical winner
+            counter++;
+            if(winner == 3){
                 return  winnerPlayer;
             }
         }
+
 
         return 0;
     }
