@@ -23,8 +23,25 @@ public class Game{
     }
 
     public int getRondomTile(){
+        int tile;
+
+        tile = getTileToPlay(2);
+        if(tile != -1) return tile;
+
+        if(difficult>0){
+            tile =getTileToPlay(1);
+            if(tile!=-1)return  tile;
+        }
+        if(difficult==2){
+            if(TILE[0] == 0) return 0;
+            if(TILE[2] == 0) return 2;
+            if(TILE[6] == 0) return 6;
+            if(TILE[8] == 0) return 8;
+        }
+
         Random randomTile = new Random();
-        return randomTile.nextInt(9);
+        tile=randomTile.nextInt(9);
+        return tile;
     }
 
     public boolean isTileMack(int tile){ //A tile is 1 when was played before
@@ -115,6 +132,23 @@ public class Game{
 
         return 0;
     }
+
+    private int getTileToPlay(int player){
+        int [][]COMBINATIONS = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
+        int tileToPlay = -1;
+        int count = 0;
+        for(int i =0 ; i < COMBINATIONS.length; i++){
+            for(int pos:COMBINATIONS[i]){
+                if(TILE[pos]==player) count++;
+                if(TILE[pos]==0) tileToPlay = pos;
+            }
+            if(count == 2 && tileToPlay!=-1)return tileToPlay;
+            tileToPlay = -1;
+            count = 0;
+        }
+        return -1;
+    }
+
     public boolean isGameTie(){ //This function check is the game is tie
         for(int x =0; x < TILE.length; x++){
             if(TILE[x] == 0){ //Is there's an 0 in the board is't means there is a tile in blank

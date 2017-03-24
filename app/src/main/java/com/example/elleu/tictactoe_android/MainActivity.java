@@ -103,10 +103,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                     while (!game.isTileMack(tile) && !game.isGameTie()) {
                         tile = game.getRondomTile();
                     }
-                    int gameResult = game.isWinner();
-                    if (gameResult == 0) {
                         marc(tile);
-                    }
                 }
             }
         }
@@ -137,50 +134,4 @@ public class MainActivity extends Activity implements View.OnClickListener{
          }
 
     }
-
-
-         /*   for (int x = 0; x < TILES.length; x++) {
-                if (view.getId() == TILES[x]) {
-                    ImageView imageView = (ImageView)findViewById(TILES[x]);
-                    if(game.getCurrentPlayer() == "x"){
-                        imageView.setImageResource(R.drawable.circulo);
-                        game.setCurrentPlayer("y");
-                     }else{
-                        imageView.setImageResource(R.drawable.aspa);
-                        game.setCurrentPlayer("x");
-                    }
-                    break;
-                }
-            }
-            */
-
-/*
-    private void checkMarkTile(){
-
-    }
-    private void start(){ //Thus methos should be called went click 1 player or two player
-        ImageView image;
-        for(int tiles : TILE){ //Reset the board
-            image = (ImageView)findViewById(tiles);
-            image.setImageResource(R.drawable.casilla);
-        }
-
-        RadioGroup difficult = (RadioGroup) findViewById(R.id.radioGroup);
-        int selectedDifficult = difficult.getCheckedRadioButtonId();
-
-        if(selectedDifficult == R.id.easyDifificult){
-            selectedDifficult = 1;
-        }else if(selectedDifficult == R.id.normalDifificult){
-            selectedDifficult = 2;
-        }else if(selectedDifficult == R.id.hardDifificult){
-            selectedDifficult = 3;
-        }
-
-        btnOnePlayer.setEnabled(false);
-        btnTwoPlayer.setEnabled(false);
-        difficult.setAlpha(0);
-
-        game = new Game(player, selectedDifficult); //Start the game!
-    }
-    */
 }
