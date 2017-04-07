@@ -11,7 +11,6 @@ public class Game{
     private final static int TIE = 3;
     public static int playerX;
     public final int difficult;
-
     private int TILE [];
     public Game(int difficult){
         playerX  = 1;
@@ -33,12 +32,27 @@ public class Game{
             if(tile!=-1)return  tile;
         }
         if(difficult==2){
+            if(TILE[4]==0){
+                  return 4;
+            }
+            if(TILE[0] == 1 && TILE[8] == 0){
+                return 8;
+            }
+            if(TILE[2] == 1 && TILE[6] == 0){
+                return 6;
+            }
+            if(TILE[6] == 1 && TILE[2] == 0){
+                return 0;
+            }
+            if(TILE[8] == 1 && TILE[0] == 0){
+                return 0;
+            }
+
             if(TILE[0] == 0) return 0;
             if(TILE[2] == 0) return 2;
             if(TILE[6] == 0) return 6;
             if(TILE[8] == 0) return 8;
         }
-
         Random randomTile = new Random();
         tile=randomTile.nextInt(9);
         return tile;
@@ -52,7 +66,6 @@ public class Game{
         }
         return true;
     }
-
     public  int turn(){
         int winner = isWinner();
         if(winner != 0){
@@ -67,7 +80,6 @@ public class Game{
     }
     public int isWinner(){
         //Horizontal
-
         int couter = 0;
         int winnerPlayer = TILE[0];
         int newTile[][] = new int[3][3];  //Represent the board
@@ -90,10 +102,9 @@ public class Game{
                 }
             }
         }
-
         for(int x = 0 ; x < 3; x ++){
             winnerPlayer = newTile[0][x];
-            for(int y =0 ; y < 3; y++){
+            for(int y = 0 ; y < 3; y++){
                 if(newTile[y][x] == 0 || newTile[y][x] != winnerPlayer){
                     break;
                 }
@@ -103,7 +114,6 @@ public class Game{
                 }
             }
         }
-
         //Diagonal
         winnerPlayer = TILE[0];
         for(int x = 0; x < 3; x++){
@@ -114,8 +124,7 @@ public class Game{
             if(x == 2){
                 return  winnerPlayer;
             }
-        }
-
+      }
         winnerPlayer = TILE[2];
         int counter = 0;
         for(int x = 2; x > -1; x--){
@@ -129,7 +138,6 @@ public class Game{
             counter++;
         }
         if(isGameTie()) return Game.TIE;
-
         return 0;
     }
 
@@ -162,4 +170,3 @@ public class Game{
     }
     public int getPlayer() {  return playerX; }
 }
-

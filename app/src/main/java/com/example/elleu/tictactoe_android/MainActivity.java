@@ -3,7 +3,6 @@ package com.example.elleu.tictactoe_android;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,7 +10,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements View.OnClickListener{
-
     private int player;
     private int difficult;
     Button onePlayerButton,twoPlayerButton;
@@ -36,8 +34,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         TILES[6] = R.id.c1;
         TILES[7] = R.id.c2;
         TILES[8] = R.id.c3;
-
-
 
         onePlayerButton = (Button)findViewById(R.id.onePlayer);
         onePlayerButton.setOnClickListener(this);
@@ -71,7 +67,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         twoPlayerButton.setEnabled(false);
         onePlayerButton.setEnabled(false);
         configDifficult.setAlpha(0);
-
         start();
     }
 
@@ -109,10 +104,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
     }
 
-
     private void marc(int tile){
         ImageView image = (ImageView)findViewById(TILES[tile]);
-
         if(game.getPlayer() == 1){
             image.setImageResource(R.drawable.circulo);
         }else{
@@ -127,11 +120,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
             Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.crosses_win)), Toast.LENGTH_LONG).show();
             game = null;
         }
-
          if(result == 3){
                Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.tie)), Toast.LENGTH_LONG).show();
              game = null;
          }
-
     }
 }
