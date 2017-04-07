@@ -11,7 +11,7 @@ public class Game{
     private final static int TIE = 3;
     public static int playerX;
     public final int difficult;
-    private int TILE [];
+    int TILE [];
     public Game(int difficult){
         playerX  = 1;
         this.difficult = difficult;
