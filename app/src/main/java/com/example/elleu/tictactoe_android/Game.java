@@ -32,26 +32,35 @@ public class Game{
             if(tile!=-1)return  tile;
         }
         if(difficult==2){
-            if(TILE[4]==0){
-                  return 4;
+            if(TILE[4]==0){ //If the user does not play in the center, the machine play it
+                return 4;
             }
-            if(TILE[0] == 1 && TILE[8] == 0){
-                return 8;
+            else if(TILE[4]==1){ //If the user play in the center, the machine will return a corner
+                if(TILE[0] == 0){
+                    return 0;
+                }
+                else if(TILE[2] == 0){
+                    return 2;
+                }
+                else if(TILE[6] == 0){
+                    return 6;
+                }
+                else if(TILE[8] == 0){
+                    return 8;
+                }
             }
-            if(TILE[2] == 1 && TILE[6] == 0){
-                return 6;
-            }
-            if(TILE[6] == 1 && TILE[2] == 0){
-                return 0;
-            }
-            if(TILE[8] == 1 && TILE[0] == 0){
-                return 0;
-            }
-
-            if(TILE[0] == 0) return 0;
-            if(TILE[2] == 0) return 2;
-            if(TILE[6] == 0) return 6;
-            if(TILE[8] == 0) return 8;
+//            else if(TILE[0] == 1 && TILE[8] == 0){
+//                return 8;
+//            }
+//            else if(TILE[2] == 1 && TILE[6] == 0){
+//                return 6;
+//            }
+//            else if(TILE[6] == 1 && TILE[2] == 0){
+//                return 0;
+//            }
+//            else if(TILE[8] == 1 && TILE[0] == 0){
+//                return 0;
+//            }
         }
         Random randomTile = new Random();
         tile=randomTile.nextInt(9);

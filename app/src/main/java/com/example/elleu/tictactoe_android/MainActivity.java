@@ -123,6 +123,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
          if(result == 3){
                Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.tie)), Toast.LENGTH_LONG).show();
              game = null;
+             //start();
          }
     }
 }
