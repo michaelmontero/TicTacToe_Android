@@ -39,15 +39,15 @@ public class Game{
                 if(TILE[0] == 0){
                     return 0;
                 }
-                else if(TILE[2] == 0){
-                    return 2;
-                }
-                else if(TILE[6] == 0){
-                    return 6;
-                }
-                else if(TILE[8] == 0){
-                    return 8;
-                }
+//                else if(TILE[2] == 0){
+//                    return 2;
+//                }
+//                else if(TILE[6] == 0){
+//                    return 6;
+//                }
+//                else if(TILE[8] == 0){
+//                    return 8;
+//                }
             }
 //            else if(TILE[0] == 1 && TILE[8] == 0){
 //                return 8;

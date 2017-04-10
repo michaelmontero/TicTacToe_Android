@@ -1,8 +1,11 @@
 package com.example.elleu.tictactoe_android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,7 +25,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         //Initializing each tile and saving in the array
         TILES = new int[9];
-
         TILES[0] = R.id.a1;
         TILES[1] =R.id.a2;
         TILES[2] = R.id.a3;
@@ -57,8 +59,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         if(idRadio == R.id.normalDifificult){
             difficult = 1;
         }
-        else if(idRadio == R.id.hardDifificult)
-        {
+        else if(idRadio == R.id.hardDifificult){
             difficult = 2;
         }
 
@@ -104,26 +105,52 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
     }
 
-    private void marc(int tile){
-        ImageView image = (ImageView)findViewById(TILES[tile]);
-        if(game.getPlayer() == 1){
+    private void marc(int tile) {
+        Handler handler = new Handler();
+        final ImageView image = (ImageView) findViewById(TILES[tile]);
+        if (game.getPlayer() == 1) {
             image.setImageResource(R.drawable.circulo);
-        }else{
-            image.setImageResource(R.drawable.aspa);
+        } else {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(650);
+                        image.setImageResource(R.drawable.aspa);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
         int result = game.turn();
-        if(result == 1) {
-            Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.circle_win)), Toast.LENGTH_LONG).show();
-            game = null;
+        if(result != 0) {
+
+            if (result == 1) {
+                game = null;
+                restartGame(String.valueOf(getResources().getText(R.string.circle_win)));
+            }
+            if (result == 2) {
+                game = null;
+                restartGame(String.valueOf(getResources().getText(R.string.crosses_win)));
+            }
+            if (result == 3) {
+                game = null;
+                restartGame(String.valueOf(getResources().getText(R.string.tie)));
+            }
         }
-        if(result == 2) {
-            Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.crosses_win)), Toast.LENGTH_LONG).show();
-            game = null;
-        }
-         if(result == 3){
-               Toast.makeText(MainActivity.this, String.valueOf(getResources().getText(R.string.tie)), Toast.LENGTH_LONG).show();
-             game = null;
-             //start();
-         }
+    }
+    private void restartGame(String result){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(result);
+        builder.setCancelable(false);
+        builder.setNegativeButton("Restart", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                start();
+                game = new Game(difficult);
+            }
+        });
+        builder.create().show();
     }
 }
