@@ -7,19 +7,18 @@ package com.example.elleu.tictactoe_android;
 public class Game{
     public static int players;
     public final int difficult;
-    private String currentPlayer;
+    private int currentPlayer;
 
     public Game(int players, int difficult){
         this.players = 1;
         this.difficult = difficult;
-        currentPlayer = "x";
+        currentPlayer = 0;
     }
 
-    public String getCurrentPlayer() {
+    public int getCurrentPlayer() {
         return currentPlayer;
     }
-
-    public void setCurrentPlayer(String currentPlayer) {
+    public void setCurrentPlayer(int currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
 }

@@ -16,6 +16,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private int [] TILE =new int[9];
     private Game game;
     private int player = 1;
+    private final int PLAYERO = 0, PLAYERX = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,25 +54,63 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     public void markTile(View view){//This method is called went click in any tile in the board
 
-        if(game != null) { //Is the game does not start
-            for (int x = 0; x < TILE.length; x++) {
-                if (view.getId() == TILE[x]) {
-                    ImageView imageView = (ImageView)findViewById(TILE[x]);
-                    if(game.getCurrentPlayer() == "x"){
-                        imageView.setClickable(false);
-                        imageView.setImageResource(R.drawable.circulo);
-                        game.setCurrentPlayer("y");
-                     }else{
-                        imageView.setImageResource(R.drawable.aspa);
-                        imageView.setClickable(false);
-                        game.setCurrentPlayer("x");
+            if(game != null) { //Is the game does not start
+                if(!isWin()){
+                for (int x = 0; x < TILE.length; x++) {
+                    if (view.getId() == TILE[x]) {
+                        ImageView imageView = (ImageView)findViewById(TILE[x]);
+                        if(game.getCurrentPlayer() == PLAYERO){
+                            imageView.setClickable(false);
+                            imageView.setImageResource(R.drawable.circulo);
+                            game.setCurrentPlayer(PLAYERX);
+                            TILE[x] = PLAYERO;
+                        }else{
+                            imageView.setImageResource(R.drawable.aspa);
+                            imageView.setClickable(false);
+                            game.setCurrentPlayer(PLAYERO);
+                            TILE[x] = PLAYERX;
+                        }
+                        break;
                     }
-                    break;
                 }
             }
         }
+
     }
 
+    private boolean isWin(){
+        int count = 0;
+        int board[][] = new int[3][3];
+        for(int x = 0; x < 3; x++){
+            for(int y = 0; y < 3 ;y ++){
+                board[x][y] = TILE[count];
+                count++;
+            }
+        }
+
+        int winner = board[0][0];
+        for(int x = 0; x < 3 ; x++){
+            for (int y =0 ; y < 3 ; y ++){
+                System.out.println(board[x][y]);
+                System.out.println("----------------");
+
+                if(board[x][y] < 2){
+                    break;
+                }if (winner != board[x][y]){
+                    break;
+                }
+                winner = board[x][y];
+                if(y==2){
+                    Toast.makeText(MainActivity.this, "Gano "+winner, Toast.LENGTH_LONG).show();
+                    return  true;
+                }
+
+            }
+        }
+
+        Toast.makeText(MainActivity.this, "Nadie gana", Toast.LENGTH_SHORT).show();
+        return false;
+    }
 
     private void start(){ //Thus methos should be called went click 1 player or two player
         ImageView image;
