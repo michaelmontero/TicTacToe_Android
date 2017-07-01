@@ -37,8 +37,9 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
         int buttonId = view.getId();
-        ((MainActivity)getActivity()).setPlayer(1);
-        ((MainActivity)getActivity()).setDifficult(0);
+        MainActivity mainActivity = (MainActivity)getActivity();
+        mainActivity.setPlayer(1);
+        mainActivity.setDifficult(0);
 
         if(buttonId == R.id.twoPlayer){
             ((MainActivity)getActivity()).setPlayer(2);
@@ -46,16 +47,13 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
 
         int idRadio = configDifficult.getCheckedRadioButtonId(); //Get radio button checked id
         if(idRadio == R.id.normalDifificult){
-            ((MainActivity)getActivity()).setDifficult(2);
+            mainActivity.setDifficult(2);
         }
         else if(idRadio == R.id.hardDifificult){
-            ((MainActivity)getActivity()).setDifficult(2);
+            mainActivity.setDifficult(2);
         }
-        ((MainActivity)getActivity()).start();
-        FragmentManager fm = (getActivity()).getFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.remove(this);
-        transaction.commit();
-       // transaction.commitNow();
+        if(idRadio > 0){
+            mainActivity.start();//Clear all the tile and hide the fragment
+        }
     }
 }

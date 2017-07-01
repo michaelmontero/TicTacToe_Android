@@ -47,10 +47,10 @@ public class MainActivity extends Activity{
         fragmentTransaction = getFragmentManager().beginTransaction();
 
         configurationFragment = new ConfigurationFragment();
-        fragmentTransaction.add(R.id.contenedor, configurationFragment,"aa");
+        fragmentTransaction.add(R.id.contenedor, configurationFragment, "configurationFragment").addToBackStack(null);
+        fragmentManager.popBackStack();
         fragmentTransaction.commit();
         //End fragment
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
@@ -61,6 +61,9 @@ public class MainActivity extends Activity{
             image.setImageResource(R.drawable.casilla);
         }
         game = new Game(difficult);
+
+        fragmentManager.popBackStack();
+        fragmentManager.beginTransaction().remove(fragmentManager.findFragmentByTag("configurationFragment")).commit();
     }
 
     public void marcTile(View view){//This method is called went click in any tile in the board
@@ -89,9 +92,6 @@ public class MainActivity extends Activity{
         }
     }
 
-    public FragmentTransaction getTransaction(){
-        return fragmentTransaction;
-    }
     public void setDifficult(int difficult){
         this.difficult = difficult;
     }
