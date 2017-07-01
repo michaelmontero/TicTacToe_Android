@@ -3,8 +3,10 @@ package com.example.elleu.tictactoe_android;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View view) {
         int buttonId = view.getId();
@@ -48,9 +51,11 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
         else if(idRadio == R.id.hardDifificult){
             ((MainActivity)getActivity()).setDifficult(2);
         }
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         ((MainActivity)getActivity()).start();
-        transaction.remove(this).commit();
-        transaction.addToBackStack(null);
+        FragmentManager fm = (getActivity()).getFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.remove(this);
+        transaction.commit();
+       // transaction.commitNow();
     }
 }

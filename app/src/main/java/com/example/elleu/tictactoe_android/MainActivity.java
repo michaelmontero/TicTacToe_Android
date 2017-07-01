@@ -61,7 +61,6 @@ public class MainActivity extends Activity{
             image.setImageResource(R.drawable.casilla);
         }
         game = new Game(difficult);
-
     }
 
     public void marcTile(View view){//This method is called went click in any tile in the board
@@ -90,6 +89,9 @@ public class MainActivity extends Activity{
         }
     }
 
+    public FragmentTransaction getTransaction(){
+        return fragmentTransaction;
+    }
     public void setDifficult(int difficult){
         this.difficult = difficult;
     }
