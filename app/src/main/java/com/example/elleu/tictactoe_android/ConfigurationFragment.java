@@ -1,6 +1,8 @@
 package com.example.elleu.tictactoe_android;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -15,8 +17,6 @@ import android.widget.RadioGroup;
 
 public class ConfigurationFragment extends Fragment implements View.OnClickListener{
     Button onePlayerButton,twoPlayerButton;
-    private int player;
-    private int difficult;
     RadioGroup configDifficult;
     @Nullable
     @Override
@@ -48,10 +48,9 @@ public class ConfigurationFragment extends Fragment implements View.OnClickListe
         else if(idRadio == R.id.hardDifificult){
             ((MainActivity)getActivity()).setDifficult(2);
         }
-
-        twoPlayerButton.setEnabled(false);
-        onePlayerButton.setEnabled(false);
-        configDifficult.setAlpha(0);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         ((MainActivity)getActivity()).start();
+        transaction.remove(this).commit();
+        transaction.addToBackStack(null);
     }
 }

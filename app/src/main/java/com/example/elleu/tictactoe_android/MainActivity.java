@@ -2,6 +2,7 @@ package com.example.elleu.tictactoe_android;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
@@ -14,12 +15,14 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends Activity{
     private int player,difficult;
     private int[] TILES;
     private Game game;
     private FragmentManager fragmentManager;
+    ConfigurationFragment configurationFragment;
     FragmentTransaction fragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,16 +46,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
         fragmentManager = getFragmentManager();
         fragmentTransaction = getFragmentManager().beginTransaction();
 
-        ConfigurationFragment configurationFragment = new ConfigurationFragment();
-        fragmentTransaction.add(R.id.contenedor, configurationFragment);
+        configurationFragment = new ConfigurationFragment();
+        fragmentTransaction.add(R.id.contenedor, configurationFragment,"aa");
         fragmentTransaction.commit();
         //End fragment
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-    }
-
-    public void onClick(View view){ //Thus method is called went click 1 player or two player nutton
-
     }
 
     public void start(){
@@ -62,6 +61,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             image.setImageResource(R.drawable.casilla);
         }
         game = new Game(difficult);
+
     }
 
     public void marcTile(View view){//This method is called went click in any tile in the board
