@@ -2,6 +2,8 @@ package com.example.elleu.tictactoe_android;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -13,11 +15,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements View.OnClickListener{
-    private int player;
-    private int difficult;
-    Button onePlayerButton,twoPlayerButton;
+    private int player,difficult;
     private int[] TILES;
     private Game game;
+    private FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,46 +39,29 @@ public class MainActivity extends Activity implements View.OnClickListener{
         TILES[7] = R.id.c2;
         TILES[8] = R.id.c3;
 
-        onePlayerButton = (Button)findViewById(R.id.onePlayer);
-        onePlayerButton.setOnClickListener(this);
-        twoPlayerButton = (Button)findViewById(R.id.twoPlayer);
-        twoPlayerButton.setOnClickListener(this);
+        //Begin fragent transaction
+        fragmentManager = getFragmentManager();
+        fragmentTransaction = getFragmentManager().beginTransaction();
+
+        ConfigurationFragment configurationFragment = new ConfigurationFragment();
+        fragmentTransaction.add(R.id.contenedor, configurationFragment);
+        fragmentTransaction.commit();
+        //End fragment
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     public void onClick(View view){ //Thus method is called went click 1 player or two player nutton
-        int buttonId = view.getId();
-        player = 1;
-        difficult = 0;
 
-        if(buttonId == R.id.twoPlayer){
-            player = 2;
-        }
-
-        RadioGroup configDifficult = (RadioGroup)findViewById(R.id.radioGroup);
-        int idRadio = configDifficult.getCheckedRadioButtonId(); //Get radio button checked id
-        if(idRadio == R.id.normalDifificult){
-            difficult = 1;
-        }
-        else if(idRadio == R.id.hardDifificult){
-            difficult = 2;
-        }
-
-        game = new Game(difficult);
-
-        twoPlayerButton.setEnabled(false);
-        onePlayerButton.setEnabled(false);
-        configDifficult.setAlpha(0);
-        start();
     }
 
-    private void start(){
+    public void start(){
         ImageView image;
         for(int tile : TILES){
             image=(ImageView)findViewById(tile);
             image.setImageResource(R.drawable.casilla);
         }
+        game = new Game(difficult);
     }
 
     public void marcTile(View view){//This method is called went click in any tile in the board
@@ -103,6 +88,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 }
             }
         }
+    }
+
+    public void setDifficult(int difficult){
+        this.difficult = difficult;
+    }
+    public void setPlayer(int player){
+        this.player = player;
     }
 
     private void marc(int tile) {

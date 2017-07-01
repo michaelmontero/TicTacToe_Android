@@ -19,45 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:id="@+id/contenedor"
         android:gravity="center_horizontal"
         android:layout_gravity="center_vertical">
 
-        <TextView
-            style="@style/tittle"
-            android:text="@string/app_name"
-        />
-        <Button
-            android:id="@+id/onePlayer"
-            android:text="@string/onePlayer"
-            style="@style/button" />
 
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioGroup">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/easy_difficult"
-                android:id="@+id/easyDifificult"/>
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/normal_difficult"
-                android:id="@+id/normalDifificult"/>
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hard_difficult"
-                android:id="@+id/hardDifificult"/>
-
-        </RadioGroup>
-        <Button
-            android:id="@+id/twoPlayer"
-            android:text="@string/twoPlayer"
-            style="@style/button" />
     </LinearLayout>
 
     <android.support.v4.widget.Space
