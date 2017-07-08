@@ -126,7 +126,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
         int result = game.turn();
         if(result != 0) {
-
             if (result == 1) {
                 game = null;
                 restartGame(String.valueOf(getResources().getText(R.string.circle_win)));
@@ -145,7 +144,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(result);
         builder.setCancelable(false);
-        builder.setPositiveButton("Configure", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getResources().getString(R.string.configure), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 twoPlayerButton.setEnabled(true);
@@ -153,7 +152,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 configDifficult.setAlpha(1);
             }
         });
-        builder.setNegativeButton("Restart", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getResources().getString(R.string.restart), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 start();
