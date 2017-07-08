@@ -10,4 +10,6 @@
     <string name="circle_win">Circulos ganan!</string>
     <string name="crosses_win">Aspas ganan!</string>
     <string name="tie">Empate!</string>
+    <string name="configure">Configurar</string>
+    <string name="restart">Volver a jugar!</string>
 </resources>

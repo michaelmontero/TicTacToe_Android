@@ -27,7 +27,7 @@
 
     <style name="casillas">
         <item name="android:layout_width">@dimen/casilla</item>
-        <item name="android:layout_margin">3dp</item>
+        <item name="android:layout_margin">4dp</item>
         <item name="android:layout_height">@dimen/casilla</item>
         <item name="android:src">@drawable/casilla</item>
         <item name="android:onClick">marcTile</item>

@@ -9,10 +9,10 @@ import java.util.Random;
 public class Game{
 
     private final static int TIE = 3;
-    public static int playerX;
-    public final int difficult;
+    private static int playerX;
+    private final int difficult;
     int TILE [];
-    public Game(int difficult){
+    Game(int difficult){
         playerX  = 1;
         this.difficult = difficult;
         TILE = new int[9];
@@ -21,53 +21,31 @@ public class Game{
         }
     }
 
-    public int getRondomTile(){
+    int getRondomTile() {
         int tile;
 
         tile = getTileToPlay(2);
-        if(tile != -1) return tile;
+        if (tile != -1) return tile;
 
-        if(difficult>0){
-            tile =getTileToPlay(1);
-            if(tile!=-1)return  tile;
+        if (difficult > 0) {
+            tile = getTileToPlay(1);
+            if (tile != -1) return tile;
         }
-        if(difficult==2){
-            if(TILE[4]==0){ //If the user does not play in the center, the machine play it
+        if (difficult == 2) {
+            if (TILE[4] == 0) { //If the user does not play in the center, the machine play it
                 return 4;
-            }
-            else if(TILE[4]==1){ //If the user play in the center, the machine will return a corner
-                if(TILE[0] == 0){
+            } else if (TILE[4] == 1) { //If the user play in the center, the machine will return a corner
+                if (TILE[0] == 0) {
                     return 0;
                 }
-//                else if(TILE[2] == 0){
-//                    return 2;
-//                }
-//                else if(TILE[6] == 0){
-//                    return 6;
-//                }
-//                else if(TILE[8] == 0){
-//                    return 8;
-//                }
             }
-//            else if(TILE[0] == 1 && TILE[8] == 0){
-//                return 8;
-//            }
-//            else if(TILE[2] == 1 && TILE[6] == 0){
-//                return 6;
-//            }
-//            else if(TILE[6] == 1 && TILE[2] == 0){
-//                return 0;
-//            }
-//            else if(TILE[8] == 1 && TILE[0] == 0){
-//                return 0;
-//            }
         }
-        Random randomTile = new Random();
-        tile=randomTile.nextInt(9);
-        return tile;
+            Random randomTile = new Random();
+            tile = randomTile.nextInt(9);
+            return tile;
     }
 
-    public boolean isTileMack(int tile){ //A tile is 1 when was played before
+    boolean isTileMack(int tile){ //A tile is 1 when was played before
         if(TILE[tile] != 0){
             return  false;
         }else {
@@ -75,7 +53,7 @@ public class Game{
         }
         return true;
     }
-    public  int turn(){
+     int turn(){
         int winner = isWinner();
         if(winner != 0){
             return  winner;
@@ -87,7 +65,7 @@ public class Game{
         }
         return 0;
     }
-    public int isWinner(){
+    int isWinner(){
         //Horizontal
         int couter = 0;
         int winnerPlayer = TILE[0];
@@ -166,7 +144,7 @@ public class Game{
         return -1;
     }
 
-    public boolean isGameTie(){ //This function check is the game is tie
+    boolean isGameTie(){ //This function check is the game is tie
         for(int x =0; x < TILE.length; x++){
             if(TILE[x] == 0){ //Is there's an 0 in the board is't means there is a tile in blank
                 break;
@@ -177,5 +155,5 @@ public class Game{
         }
         return false;
     }
-    public int getPlayer() {  return playerX; }
+    int getPlayer() {  return playerX; }
 }

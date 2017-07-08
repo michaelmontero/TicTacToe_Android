@@ -16,6 +16,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private int player;
     private int difficult;
     Button onePlayerButton,twoPlayerButton;
+    private RadioGroup configDifficult;
     private int[] TILES;
     private Game game;
     @Override
@@ -54,7 +55,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             player = 2;
         }
 
-        RadioGroup configDifficult = (RadioGroup)findViewById(R.id.radioGroup);
+        configDifficult= (RadioGroup)findViewById(R.id.radioGroup);
         int idRadio = configDifficult.getCheckedRadioButtonId(); //Get radio button checked id
         if(idRadio == R.id.normalDifificult){
             difficult = 1;
@@ -144,6 +145,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(result);
         builder.setCancelable(false);
+        builder.setPositiveButton("Configure", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                twoPlayerButton.setEnabled(true);
+                onePlayerButton.setEnabled(true);
+                configDifficult.setAlpha(1);
+            }
+        });
         builder.setNegativeButton("Restart", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

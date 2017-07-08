@@ -10,4 +10,6 @@
     <string name="circle_win">Circle win!</string>
     <string name="crosses_win">Cresses win!</string>
     <string name="tie">The game is tie!</string>
+    <string name="configure">Configure</string>
+    <string name="restart">Play again!</string>
 </resources>
