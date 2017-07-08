@@ -3,9 +3,11 @@ package com.example.elleu.tictactoe_android;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity implements View.OnClickListener{
     private int player;
+    private SharedPreferences preferences;
     private int difficult;
     Button onePlayerButton,twoPlayerButton;
     private RadioGroup configDifficult;
@@ -42,6 +45,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         onePlayerButton.setOnClickListener(this);
         twoPlayerButton = (Button)findViewById(R.id.twoPlayer);
         twoPlayerButton.setOnClickListener(this);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
@@ -129,13 +134,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
             if (result == 1) {
                 game = null;
                 restartGame(String.valueOf(getResources().getText(R.string.circle_win)));
+                preferences.edit().putInt("circulos",preferences.getInt("circulos",0) + 1).apply();
             }
             if (result == 2) {
                 game = null;
+                preferences.edit().putInt("aspas",preferences.getInt("aspas",0) + 1).apply();
                 restartGame(String.valueOf(getResources().getText(R.string.crosses_win)));
             }
             if (result == 3) {
                 game = null;
+                preferences.edit().putInt("tie",preferences.getInt("tie",0) + 1).apply();
                 restartGame(String.valueOf(getResources().getText(R.string.tie)));
             }
         }

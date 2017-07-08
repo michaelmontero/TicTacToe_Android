@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -17,7 +17,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/space"
+        android:layout_toEndOf="@+id/space">
 
         <TextView
             style="@style/tittle"
@@ -60,43 +64,57 @@
     <android.support.v4.widget.Space
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_weight="30"/>
+        android:layout_weight="30"
+        android:id="@+id/space" />
 
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:layout_weight="4.58"
         android:columnCount="3"
         android:rowCount="3"
-        android:layout_weight="42.15">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/gridLayout">
 
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/a1" />
+            android:id="@+id/a1"
+            style="@style/casillas" />
+
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/a2" />
+            android:id="@+id/a2"
+            style="@style/casillas" />
+
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/a3" />
+            android:id="@+id/a3"
+            style="@style/casillas" />
+
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/b1" />
+            android:id="@+id/b1"
+            style="@style/casillas" />
+
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/b2" />
+            android:id="@+id/b2"
+            style="@style/casillas" />
+
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/b3" />
+            android:id="@+id/b3"
+            style="@style/casillas" />
+
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/c1" />
+            android:id="@+id/c1"
+            style="@style/casillas" />
+
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/c2" />
+            android:id="@+id/c2"
+            style="@style/casillas" />
+
         <ImageView
-            style="@style/casillas"
-            android:id="@+id/c3" />
+            android:id="@+id/c3"
+            style="@style/casillas" />
 
     </GridLayout>
-</LinearLayout>
+</RelativeLayout>
